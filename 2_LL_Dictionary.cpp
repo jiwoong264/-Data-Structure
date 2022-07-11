@@ -77,7 +77,7 @@ void Dictionary::Insert(string word) {
 
         if (!tmp) //LL의 맨 끝에 도달한 경우
             break; //반복 종료
-        else if (prev->data <= word && tmp->data >= word) //prev와 tmp 사이가 삽입될 적절한 위치인 경우
+        else if (tmp->data >= word) //prev와 tmp 사이가 삽입될 적절한 위치인 경우
             break; //반복 종료
     }
 
@@ -111,10 +111,9 @@ void Dictionary::Delete(string word) {
     }
     else if (tmp == first) //첫 번째 노드가 삭제할 word를 가진 경우
     {
-        prev = first->link; //prev가 두 번째 노드를 가리킴
+        first = first->link; //first가 기존 두 번째 노드를 가리킴
         tmp->link = NULL; //반환하기 전 link 초기화
         delete tmp; //삭제한 노드의 메모리 반환
-        first = prev; // first를 기존의 두번 째 노드를 가리킴
     }
     else //삭제할 word를 가진 노드가 마지막 노드이거나 두 노드 사이인 경우
     {
